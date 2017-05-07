@@ -1,4 +1,4 @@
-package com.zhang.util;
+﻿package com.zhang.util;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -10,7 +10,7 @@ public class ServiceProvinderCore {
 	protected ApplicationContext ctx;
 	
 	/**
-	 * @param filename  beans.xml
+	 * @param filename  beans.xml修改
 	 */
 	public void load(String filename){
 		ctx=new ClassPathXmlApplicationContext(filename);
