@@ -15,7 +15,7 @@
     <module>search-common</module>
     <module>search-app</module>
   </modules>
-  <!-- ²âÊÔ   -->
+  
   <build>
 	<plugins>
 		<plugin>
