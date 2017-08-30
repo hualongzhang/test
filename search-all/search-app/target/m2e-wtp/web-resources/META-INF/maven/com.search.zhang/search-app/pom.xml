@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.search.zhang</groupId>
+    <artifactId>search-all</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+  <artifactId>search-app</artifactId>
+  <packaging>war</packaging>
+  <name>search-app Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  
+  <properties>
+  	<spring.version>4.2.0.RELEASE</spring.version>
+  </properties>
+  
+  <dependencies>
+    
+    <dependency>
+    	<groupId>javax.servlet</groupId>
+    	<artifactId>javax.servlet-api</artifactId>
+    	<version>3.1.0</version>
+    	<scope>provided</scope>  <!-- 不然 maven -tomcat运行报错 -->
+    </dependency>
+    
+    <dependency>
+             <groupId>org.springframework</groupId>
+             <artifactId>spring-context</artifactId>
+             <version>${spring.version}</version>
+    </dependency>
+     <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-aop</artifactId>
+         <version>${spring.version}</version>
+     </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-webmvc</artifactId>
+         <version>${spring.version}</version>
+      </dependency>
+	  <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-web</artifactId>
+           <version>${spring.version}</version>
+      </dependency>
+       
+     <dependency>
+	      <groupId>junit</groupId>
+	      <artifactId>junit</artifactId>
+	      <version>4.12</version>
+    </dependency>
+    
+  </dependencies>
+  
+  <build>
+    <finalName>search-app</finalName>
+    <plugins>
+    	<plugin>
+              <groupId>org.apache.tomcat.maven</groupId>
+              <artifactId>tomcat7-maven-plugin</artifactId>
+              <version>2.2</version>
+        </plugin>
+    </plugins>
+  </build>
+  
+</project>

@@ -1,0 +1,12 @@
+0:0:0:0:0:0:0:1 - - [08/Jul/2017:10:29:42 +0800] "GET /search-app/ HTTP/1.1" 500 2993 http-bio-8080-exec-1 2604
+0:0:0:0:0:0:0:1 - - [08/Jul/2017:10:30:40 +0800] "GET /search-app/demoServlet HTTP/1.1" 404 995 http-bio-8080-exec-2 0
+0:0:0:0:0:0:0:1 - - [08/Jul/2017:10:35:59 +0800] "GET /search-app/demoServlet HTTP/1.1" 404 995 http-bio-8080-exec-1 36
+0:0:0:0:0:0:0:1 - - [08/Jul/2017:10:36:10 +0800] "GET /search-app HTTP/1.1" 302 - http-bio-8080-exec-2 0
+0:0:0:0:0:0:0:1 - - [08/Jul/2017:10:36:10 +0800] "GET /search-app/ HTTP/1.1" 200 63 http-bio-8080-exec-3 47
+0:0:0:0:0:0:0:1 - - [08/Jul/2017:10:36:13 +0800] "GET /search-app/ HTTP/1.1" 200 63 http-bio-8080-exec-4 16
+0:0:0:0:0:0:0:1 - - [08/Jul/2017:10:36:15 +0800] "GET /search-app/ HTTP/1.1" 200 63 http-bio-8080-exec-5 0
+0:0:0:0:0:0:0:1 - - [08/Jul/2017:10:36:43 +0800] "GET /search-app/DemoServlet HTTP/1.1" 200 22 http-bio-8080-exec-6 0
+0:0:0:0:0:0:0:1 - - [08/Jul/2017:10:36:47 +0800] "GET /search-app/DemoServlet HTTP/1.1" 200 22 http-bio-8080-exec-7 0
+0:0:0:0:0:0:0:1 - - [08/Jul/2017:10:36:48 +0800] "GET /search-app/DemoServlet HTTP/1.1" 200 22 http-bio-8080-exec-8 0
+0:0:0:0:0:0:0:1 - - [08/Jul/2017:10:36:49 +0800] "GET /search-app/DemoServlet HTTP/1.1" 200 22 http-bio-8080-exec-9 0
+0:0:0:0:0:0:0:1 - - [08/Jul/2017:10:36:50 +0800] "GET /search-app/DemoServlet HTTP/1.1" 200 22 http-bio-8080-exec-10 0
