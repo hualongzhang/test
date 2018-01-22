@@ -1,0 +1,105 @@
+"""
+
+learn demo
+test
+
+"""
+# encoding:UTF-8
+
+import urllib.request
+import re
+import requests
+
+
+"""
+python下载指定url图片并保存
+========start===============
+"""
+
+
+def _get_html(url):
+    data = urllib.request.urlopen(url).read()
+    data = data.decode('UTF-8')
+    return data
+
+
+def _get_img(html, page_num):
+    reg = r'src="(.+?\.jpg)" pic_ext'
+    img_reg = re.compile(reg)
+    img_list = re.findall(img_reg, html)
+
+    x = 0
+    for img_url in img_list:
+        urllib.request.urlretrieve(img_url, '%s.jpg' % (str(page_num)+"_"+str(x)))
+        x = x+1
+
+
+def _get_pages(html):
+    reg_page = r'<span class="red">(\d*)</span>'
+    pattern_page = re.compile(reg_page)
+    page_list = re.findall(pattern_page, html)
+    page_total_num = page_list[0]
+    print("总页数：", page_total_num)
+
+    for n in range(1, 10):
+        print("下载页数开始", n)
+        url_n = "https://tieba.baidu.com/p/2460150866?pn="+str(n)
+        html_n = _get_html(url_n)
+        _get_img(html_n, n)
+        print("下载页数结束", n)
+    return
+
+
+"""
+python下载指定url图片并保存
+========end=================
+测试方法
+a = _get_html("http://tieba.baidu.com/p/2460150866")
+_get_pages(a)
+"""
+
+
+"""
+模拟登陆
+========start=================
+"""
+agent = 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N)' \
+        ' AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Mobile Safari/537.36'
+headers = {
+    "Host": "www.sqgjj.com",
+    "Referer": "http://www.sqgjj.com/Convenient/Index/1",
+    'User-Agent': agent
+}
+session = requests.Session()
+
+
+def _get_pic_code(pic_url):
+    captchaurl = "http://www.sqgjj.com/Convenient/CheckPCode"
+    print(captchaurl)
+    captcharesponse = session.get(url=captchaurl, headers=headers)
+    with open('checkcode.jpg', 'wb') as f:
+        f.write(captcharesponse.content)
+    f.close()
+    print("获取验证码图片完成")
+
+
+print("start")
+_get_pic_code("")
+pic_code = input('本次登录需要输入验证码： ')
+login_data = {
+    "PRadio": "1",
+    "PCard": "411422198404172751",
+    "PPwd": "111111",
+    "PCode": pic_code,
+}
+print(login_data)
+loginurl = 'http://www.sqgjj.com/Convenient/PersonSearch'
+loginresponse = session.post(url=loginurl, headers=headers, data=login_data)
+print('服务器端返回响应码：', loginresponse.status_code)
+print(loginresponse.text)
+
+
+demo_html = "http://www.sqgjj.com/Person/GetJCMXInfo?pcard=411422198404172751&ptype=1"
+demo_response = session.post(url=demo_html, headers=headers)
+print("demo返回：", demo_response.text)
+print("end")
