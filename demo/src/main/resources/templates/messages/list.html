@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <script src="../../js/vue.min.js"></script>
+</head>
+<body>
+list html
+<br/>
+
+<div id="app">
+    <runoob></runoob>
+</div>
+
+
+<script>
+    // 注册
+    Vue.component('runoob', {
+        template: '<h1>自定义组件!</h1>'
+    })
+    // 创建根实例
+    new Vue({
+        el: '#app'
+    })
+</script>
+
+</body>
+</html>

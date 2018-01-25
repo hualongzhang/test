@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>文件上传示例</title>
+</head>
+<body>
+    <h2>文件上传示例</h2>
+    <hr/>
+    <form method="POST" enctype="multipart/form-data" action="/uploadSubmit">
+        <p>
+            文件：<input type="file" name="file" />
+           文件：<input type="text" name="text" />
+        </p>
+        <p>
+            <input type="submit" value="上传" />
+        </p>
+    </form>
+    
+    <h2>多个文件上传示例</h2>
+    <form method="POST" enctype="multipart/form-data" action="/uploadSubmitS">
+	    <p>文件1：<input type="file" name="file" /></p>
+	    <p>文件2：<input type="file" name="file" /></p>
+	    文件：<input type="text" name="text" />
+	    文件：<input type="text" name="text1" />
+	    <p><input type="submit" value="上传" /></p>
+	</form>
+
+	<h2>查看文件</h2>
+	<img alt="" src="..//upload//Desert.jpg" />
+</body>
+</html>
