@@ -9,26 +9,26 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.config.ConfigFileApplicationListener;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.support.SpringFactoriesLoader;
+
 /**
  * Created by zhanghualong on 2017/11/27.
  */
 public class DemoUtils {
 
+	
     public static void main(String[] args) throws Exception{
-        System.out.print("server 运行开始");
-        List<String> a_list=new ArrayList<String>();
-        a_list.add("1");
-        a_list.add("2");
-        a_list.add("3");
-        System.out.println(a_list.toString());
-        Iterator<String> iterator_str=a_list.iterator();
-        while(iterator_str.hasNext()){
-        	String tmp=iterator_str.next();
-        	if(tmp.equals("2")){
-        		iterator_str.remove();
-        	}
-        }
-        System.out.println(a_list.toString());
+        List<String> linked_list=new LinkedList<>();
+        System.out.println(linked_list.toString());
+        linked_list.add("123");
+        System.out.println();
+        
+        SpringFactoriesLoader a=null;
+        ConfigFileApplicationListener aa=null;
     }
 
 }
