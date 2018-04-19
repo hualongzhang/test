@@ -41,6 +41,16 @@ public class BinaryTree {
         }
     }
     
+    public void preTreeNode(TreeNode root){
+    	System.out.println(root.getElement());
+    	if(root.getLeft()!=null){
+    		preTreeNode(root.getLeft());
+    	}
+    	if(root.getRight()!=null){
+    		preTreeNode(root.getRight());
+    	}
+    }
+    
     //层次遍历二叉树
     public void BFSOrder(TreeNode T) {
         if(T==null) return ;
@@ -103,6 +113,8 @@ public class BinaryTree {
 		System.out.println("二叉标准树构造完成"+btree.root.getElement());
 		System.out.println("遍历二叉树");
 		btree.BFSOrder(btree.root);
+		System.out.println("二叉标准书先序遍历");
+		btree.preTreeNode(btree.root);
 	}
     
 }

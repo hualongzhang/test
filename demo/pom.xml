@@ -70,6 +70,21 @@
     		<artifactId>spring-boot-configuration-processor</artifactId>
     		<optional>true</optional>
     	</dependency>
+    	<dependency>
+    		<groupId>redis.clients</groupId>
+    		<artifactId>jedis</artifactId>
+    	</dependency>
+    	<dependency>
+    		<groupId>com.rabbitmq</groupId>
+    		<artifactId>amqp-client</artifactId>
+    		<version>4.0.2</version>
+    	</dependency>
+    	
+    	<dependency>
+		  	<groupId>org.mybatis</groupId>
+		  	<artifactId>mybatis</artifactId>
+		  	<version>3.4.6</version>
+		</dependency>
 	</dependencies>
 
 	<build>
