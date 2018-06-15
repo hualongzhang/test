@@ -7,15 +7,16 @@
     <environment id="development">
       <transactionManager type="JDBC"/>
       <dataSource type="POOLED">
-        <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://192.168.203.131:3306/devb?characterEncoding=utf8&amp;serverTimezone=UTC"/>
-        <property name="username" value="root"/>
-        <property name="password" value="abc123"/>
+        <property name="driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+        <property name="url" value="jdbc:sqlserver://172.16.20.1:1433;DatabaseName="/>
+        <property name="username" value="GungnirReader"/>
+        <property name="password" value="itsme999"/>
       </dataSource>
     </environment>
   </environments>
   
   <mappers>
     <mapper resource="com/example/demo/util/mybatis/mapper/BlogMapper.xml"/>
+    <mapper resource="com/example/demo/util/mybatis/mapper/PurchaseApplyPaymentMapper.xml"/>
   </mappers>
 </configuration>

@@ -1,26 +1,22 @@
 package com.example.demo.util;
 
-import java.lang.ref.Reference;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Set;
-import java.util.concurrent.locks.ReentrantLock;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-/**
- * Created by zhanghualong on 2017/11/27.
- */
+import com.example.demo.service.ServiceTest;
+
 public class DemoUtils {
 	
-
-	//final finally finalize 
+	
+	
     public static void main(String[] args) throws Exception{
-    	ReentrantLock lock;
-    
+ 
+    	/***测试spring依赖注入 ***/
+        ApplicationContext ac=new AnnotationConfigApplicationContext("com.example.demo.service");  
+        ServiceTest serviceTest=ac.getBean(ServiceTest.class);
+        serviceTest.test();
+    	System.out.println("===============");
+    	 
     }
 
 }

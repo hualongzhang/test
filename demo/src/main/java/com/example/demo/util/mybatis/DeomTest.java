@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.example.demo.util.mybatis.mapper.Blog;
 import com.example.demo.util.mybatis.mapper.BlogMapper;
+import com.example.demo.util.mybatis.mapper.PurchaseApplyPaymentMapper;
 
 public class DeomTest {
 
@@ -18,9 +19,9 @@ public class DeomTest {
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			BlogMapper mapper=session.getMapper(BlogMapper.class);
-			Blog blog=mapper.selectBlog("name1");
-			System.out.println(blog.toString()+"=="+blog.getName());
+			PurchaseApplyPaymentMapper mapper=session.getMapper(PurchaseApplyPaymentMapper.class);
+			System.out.println(mapper.toString());
+			mapper.selectByPrimaryKey(123);
 		} finally {
 		  session.close();
 		}

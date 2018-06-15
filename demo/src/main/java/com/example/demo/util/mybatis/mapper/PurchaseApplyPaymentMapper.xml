@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.util.mybatis.mapper.PurchaseApplyPaymentMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.util.mybatis.mapper.PurchaseApplyPayment">
+    <id column="PKID" jdbcType="INTEGER" property="PKID" />
+    <result column="BillNo" jdbcType="NVARCHAR" property="billNo" />
+    <result column="PoiId" jdbcType="INTEGER" property="poiId" />
+    <result column="ProductName" jdbcType="NVARCHAR" property="productName" />
+    <result column="Payer" jdbcType="NVARCHAR" property="payer" />
+    <result column="Payee" jdbcType="NVARCHAR" property="payee" />
+    <result column="Account" jdbcType="NVARCHAR" property="account" />
+    <result column="Bank" jdbcType="NVARCHAR" property="bank" />
+    <result column="Amount" jdbcType="DECIMAL" property="amount" />
+    <result column="FreightAmount" jdbcType="DECIMAL" property="freightAmount" />
+    <result column="IsPlainInvoice" jdbcType="BIT" property="isPlainInvoice" />
+    <result column="Is17TaxInvoice" jdbcType="BIT" property="is17TaxInvoice" />
+    <result column="Is6TaxInvoice" jdbcType="BIT" property="is6TaxInvoice" />
+    <result column="IsOtherInvoice" jdbcType="BIT" property="isOtherInvoice" />
+    <result column="IsTakedInvoice" jdbcType="BIT" property="isTakedInvoice" />
+    <result column="IsGoodsArrival" jdbcType="BIT" property="isGoodsArrival" />
+    <result column="ChineseSumAmount" jdbcType="NVARCHAR" property="chineseSumAmount" />
+    <result column="SumAmount" jdbcType="DECIMAL" property="sumAmount" />
+    <result column="BatchNo" jdbcType="INTEGER" property="batchNo" />
+    <result column="AuditStatus" jdbcType="INTEGER" property="auditStatus" />
+    <result column="Creator" jdbcType="NVARCHAR" property="creator" />
+    <result column="CreatedDate" jdbcType="TIMESTAMP" property="createdDate" />
+    <result column="ModifyDate" jdbcType="TIMESTAMP" property="modifyDate" />
+    <result column="Modifier" jdbcType="NVARCHAR" property="modifier" />
+    <result column="Reason" jdbcType="NVARCHAR" property="reason" />
+    <result column="VoucherUrl" jdbcType="NVARCHAR" property="voucherUrl" />
+    <result column="PaidBy" jdbcType="NVARCHAR" property="paidBy" />
+    <result column="PaidDate" jdbcType="TIMESTAMP" property="paidDate" />
+    <result column="Downloads" jdbcType="INTEGER" property="downloads" />
+    <result column="PrintCount" jdbcType="INTEGER" property="printCount" />
+    <result column="Remark" jdbcType="NVARCHAR" property="remark" />
+    <result column="IsNew" jdbcType="BIT" property="isNew" />
+    <result column="SumBalance" jdbcType="DECIMAL" property="sumBalance" />
+    <result column="Deductiblel" jdbcType="DECIMAL" property="deductiblel" />
+    <result column="HxMoney" jdbcType="DECIMAL" property="hxMoney" />
+    <result column="VendorId" jdbcType="INTEGER" property="vendorId" />
+    <result column="IsDiKou" jdbcType="BIT" property="isDiKou" />
+    <result column="RebateAmount" jdbcType="DECIMAL" property="rebateAmount" />
+    <result column="NetAdvance" jdbcType="DECIMAL" property="netAdvance" />
+    <result column="RedPayableAmount" jdbcType="DECIMAL" property="redPayableAmount" />
+    <result column="OldBillNo" jdbcType="INTEGER" property="oldBillNo" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    PKID, BillNo, PoiId, ProductName, Payer, Payee, Account, Bank, Amount, FreightAmount, 
+    IsPlainInvoice, Is17TaxInvoice, Is6TaxInvoice, IsOtherInvoice, IsTakedInvoice, IsGoodsArrival, 
+    ChineseSumAmount, SumAmount, BatchNo, AuditStatus, Creator, CreatedDate, ModifyDate, 
+    Modifier, Reason, VoucherUrl, PaidBy, PaidDate, Downloads, PrintCount, Remark, IsNew, 
+    SumBalance, Deductiblel, HxMoney, VendorId, IsDiKou, RebateAmount, NetAdvance, RedPayableAmount, 
+    OldBillNo
+  </sql>
+  <select id="selectByExample" parameterType="com.example.demo.util.mybatis.mapper.PurchaseApplyPaymentExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Tuhu_purchase.dbo.Purchase_ApplyPayment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from Tuhu_purchase.dbo.Purchase_ApplyPayment
+    where PKID = #{PKID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from Tuhu_purchase.dbo.Purchase_ApplyPayment
+    where PKID = #{PKID,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.demo.util.mybatis.mapper.PurchaseApplyPaymentExample">
+    delete from Tuhu_purchase.dbo.Purchase_ApplyPayment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.util.mybatis.mapper.PurchaseApplyPayment">
+    <selectKey keyProperty="PKID" order="AFTER" resultType="java.lang.Integer">
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into Tuhu_purchase.dbo.Purchase_ApplyPayment (BillNo, PoiId, ProductName, 
+      Payer, Payee, Account, 
+      Bank, Amount, FreightAmount, 
+      IsPlainInvoice, Is17TaxInvoice, Is6TaxInvoice, 
+      IsOtherInvoice, IsTakedInvoice, IsGoodsArrival, 
+      ChineseSumAmount, SumAmount, BatchNo, 
+      AuditStatus, Creator, CreatedDate, 
+      ModifyDate, Modifier, Reason, 
+      VoucherUrl, PaidBy, PaidDate, 
+      Downloads, PrintCount, Remark, 
+      IsNew, SumBalance, Deductiblel, 
+      HxMoney, VendorId, IsDiKou, 
+      RebateAmount, NetAdvance, RedPayableAmount, 
+      OldBillNo)
+    values (#{billNo,jdbcType=NVARCHAR}, #{poiId,jdbcType=INTEGER}, #{productName,jdbcType=NVARCHAR}, 
+      #{payer,jdbcType=NVARCHAR}, #{payee,jdbcType=NVARCHAR}, #{account,jdbcType=NVARCHAR}, 
+      #{bank,jdbcType=NVARCHAR}, #{amount,jdbcType=DECIMAL}, #{freightAmount,jdbcType=DECIMAL}, 
+      #{isPlainInvoice,jdbcType=BIT}, #{is17TaxInvoice,jdbcType=BIT}, #{is6TaxInvoice,jdbcType=BIT}, 
+      #{isOtherInvoice,jdbcType=BIT}, #{isTakedInvoice,jdbcType=BIT}, #{isGoodsArrival,jdbcType=BIT}, 
+      #{chineseSumAmount,jdbcType=NVARCHAR}, #{sumAmount,jdbcType=DECIMAL}, #{batchNo,jdbcType=INTEGER}, 
+      #{auditStatus,jdbcType=INTEGER}, #{creator,jdbcType=NVARCHAR}, #{createdDate,jdbcType=TIMESTAMP}, 
+      #{modifyDate,jdbcType=TIMESTAMP}, #{modifier,jdbcType=NVARCHAR}, #{reason,jdbcType=NVARCHAR}, 
+      #{voucherUrl,jdbcType=NVARCHAR}, #{paidBy,jdbcType=NVARCHAR}, #{paidDate,jdbcType=TIMESTAMP}, 
+      #{downloads,jdbcType=INTEGER}, #{printCount,jdbcType=INTEGER}, #{remark,jdbcType=NVARCHAR}, 
+      #{isNew,jdbcType=BIT}, #{sumBalance,jdbcType=DECIMAL}, #{deductiblel,jdbcType=DECIMAL}, 
+      #{hxMoney,jdbcType=DECIMAL}, #{vendorId,jdbcType=INTEGER}, #{isDiKou,jdbcType=BIT}, 
+      #{rebateAmount,jdbcType=DECIMAL}, #{netAdvance,jdbcType=DECIMAL}, #{redPayableAmount,jdbcType=DECIMAL}, 
+      #{oldBillNo,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.util.mybatis.mapper.PurchaseApplyPayment">
+    <selectKey keyProperty="PKID" order="AFTER" resultType="java.lang.Integer">
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into Tuhu_purchase.dbo.Purchase_ApplyPayment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="billNo != null">
+        BillNo,
+      </if>
+      <if test="poiId != null">
+        PoiId,
+      </if>
+      <if test="productName != null">
+        ProductName,
+      </if>
+      <if test="payer != null">
+        Payer,
+      </if>
+      <if test="payee != null">
+        Payee,
+      </if>
+      <if test="account != null">
+        Account,
+      </if>
+      <if test="bank != null">
+        Bank,
+      </if>
+      <if test="amount != null">
+        Amount,
+      </if>
+      <if test="freightAmount != null">
+        FreightAmount,
+      </if>
+      <if test="isPlainInvoice != null">
+        IsPlainInvoice,
+      </if>
+      <if test="is17TaxInvoice != null">
+        Is17TaxInvoice,
+      </if>
+      <if test="is6TaxInvoice != null">
+        Is6TaxInvoice,
+      </if>
+      <if test="isOtherInvoice != null">
+        IsOtherInvoice,
+      </if>
+      <if test="isTakedInvoice != null">
+        IsTakedInvoice,
+      </if>
+      <if test="isGoodsArrival != null">
+        IsGoodsArrival,
+      </if>
+      <if test="chineseSumAmount != null">
+        ChineseSumAmount,
+      </if>
+      <if test="sumAmount != null">
+        SumAmount,
+      </if>
+      <if test="batchNo != null">
+        BatchNo,
+      </if>
+      <if test="auditStatus != null">
+        AuditStatus,
+      </if>
+      <if test="creator != null">
+        Creator,
+      </if>
+      <if test="createdDate != null">
+        CreatedDate,
+      </if>
+      <if test="modifyDate != null">
+        ModifyDate,
+      </if>
+      <if test="modifier != null">
+        Modifier,
+      </if>
+      <if test="reason != null">
+        Reason,
+      </if>
+      <if test="voucherUrl != null">
+        VoucherUrl,
+      </if>
+      <if test="paidBy != null">
+        PaidBy,
+      </if>
+      <if test="paidDate != null">
+        PaidDate,
+      </if>
+      <if test="downloads != null">
+        Downloads,
+      </if>
+      <if test="printCount != null">
+        PrintCount,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+      <if test="isNew != null">
+        IsNew,
+      </if>
+      <if test="sumBalance != null">
+        SumBalance,
+      </if>
+      <if test="deductiblel != null">
+        Deductiblel,
+      </if>
+      <if test="hxMoney != null">
+        HxMoney,
+      </if>
+      <if test="vendorId != null">
+        VendorId,
+      </if>
+      <if test="isDiKou != null">
+        IsDiKou,
+      </if>
+      <if test="rebateAmount != null">
+        RebateAmount,
+      </if>
+      <if test="netAdvance != null">
+        NetAdvance,
+      </if>
+      <if test="redPayableAmount != null">
+        RedPayableAmount,
+      </if>
+      <if test="oldBillNo != null">
+        OldBillNo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="billNo != null">
+        #{billNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="poiId != null">
+        #{poiId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=NVARCHAR},
+      </if>
+      <if test="payer != null">
+        #{payer,jdbcType=NVARCHAR},
+      </if>
+      <if test="payee != null">
+        #{payee,jdbcType=NVARCHAR},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=NVARCHAR},
+      </if>
+      <if test="bank != null">
+        #{bank,jdbcType=NVARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="freightAmount != null">
+        #{freightAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="isPlainInvoice != null">
+        #{isPlainInvoice,jdbcType=BIT},
+      </if>
+      <if test="is17TaxInvoice != null">
+        #{is17TaxInvoice,jdbcType=BIT},
+      </if>
+      <if test="is6TaxInvoice != null">
+        #{is6TaxInvoice,jdbcType=BIT},
+      </if>
+      <if test="isOtherInvoice != null">
+        #{isOtherInvoice,jdbcType=BIT},
+      </if>
+      <if test="isTakedInvoice != null">
+        #{isTakedInvoice,jdbcType=BIT},
+      </if>
+      <if test="isGoodsArrival != null">
+        #{isGoodsArrival,jdbcType=BIT},
+      </if>
+      <if test="chineseSumAmount != null">
+        #{chineseSumAmount,jdbcType=NVARCHAR},
+      </if>
+      <if test="sumAmount != null">
+        #{sumAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="batchNo != null">
+        #{batchNo,jdbcType=INTEGER},
+      </if>
+      <if test="auditStatus != null">
+        #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=NVARCHAR},
+      </if>
+      <if test="createdDate != null">
+        #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=NVARCHAR},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=NVARCHAR},
+      </if>
+      <if test="voucherUrl != null">
+        #{voucherUrl,jdbcType=NVARCHAR},
+      </if>
+      <if test="paidBy != null">
+        #{paidBy,jdbcType=NVARCHAR},
+      </if>
+      <if test="paidDate != null">
+        #{paidDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downloads != null">
+        #{downloads,jdbcType=INTEGER},
+      </if>
+      <if test="printCount != null">
+        #{printCount,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="isNew != null">
+        #{isNew,jdbcType=BIT},
+      </if>
+      <if test="sumBalance != null">
+        #{sumBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="deductiblel != null">
+        #{deductiblel,jdbcType=DECIMAL},
+      </if>
+      <if test="hxMoney != null">
+        #{hxMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="vendorId != null">
+        #{vendorId,jdbcType=INTEGER},
+      </if>
+      <if test="isDiKou != null">
+        #{isDiKou,jdbcType=BIT},
+      </if>
+      <if test="rebateAmount != null">
+        #{rebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="netAdvance != null">
+        #{netAdvance,jdbcType=DECIMAL},
+      </if>
+      <if test="redPayableAmount != null">
+        #{redPayableAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="oldBillNo != null">
+        #{oldBillNo,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.demo.util.mybatis.mapper.PurchaseApplyPaymentExample" resultType="java.lang.Long">
+    select count(*) from Tuhu_purchase.dbo.Purchase_ApplyPayment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update Tuhu_purchase.dbo.Purchase_ApplyPayment
+    <set>
+      <if test="record.PKID != null">
+        PKID = #{record.PKID,jdbcType=INTEGER},
+      </if>
+      <if test="record.billNo != null">
+        BillNo = #{record.billNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.poiId != null">
+        PoiId = #{record.poiId,jdbcType=INTEGER},
+      </if>
+      <if test="record.productName != null">
+        ProductName = #{record.productName,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.payer != null">
+        Payer = #{record.payer,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.payee != null">
+        Payee = #{record.payee,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.account != null">
+        Account = #{record.account,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.bank != null">
+        Bank = #{record.bank,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.amount != null">
+        Amount = #{record.amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.freightAmount != null">
+        FreightAmount = #{record.freightAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isPlainInvoice != null">
+        IsPlainInvoice = #{record.isPlainInvoice,jdbcType=BIT},
+      </if>
+      <if test="record.is17TaxInvoice != null">
+        Is17TaxInvoice = #{record.is17TaxInvoice,jdbcType=BIT},
+      </if>
+      <if test="record.is6TaxInvoice != null">
+        Is6TaxInvoice = #{record.is6TaxInvoice,jdbcType=BIT},
+      </if>
+      <if test="record.isOtherInvoice != null">
+        IsOtherInvoice = #{record.isOtherInvoice,jdbcType=BIT},
+      </if>
+      <if test="record.isTakedInvoice != null">
+        IsTakedInvoice = #{record.isTakedInvoice,jdbcType=BIT},
+      </if>
+      <if test="record.isGoodsArrival != null">
+        IsGoodsArrival = #{record.isGoodsArrival,jdbcType=BIT},
+      </if>
+      <if test="record.chineseSumAmount != null">
+        ChineseSumAmount = #{record.chineseSumAmount,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.sumAmount != null">
+        SumAmount = #{record.sumAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.batchNo != null">
+        BatchNo = #{record.batchNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.auditStatus != null">
+        AuditStatus = #{record.auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.creator != null">
+        Creator = #{record.creator,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.createdDate != null">
+        CreatedDate = #{record.createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyDate != null">
+        ModifyDate = #{record.modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifier != null">
+        Modifier = #{record.modifier,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.reason != null">
+        Reason = #{record.reason,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.voucherUrl != null">
+        VoucherUrl = #{record.voucherUrl,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.paidBy != null">
+        PaidBy = #{record.paidBy,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.paidDate != null">
+        PaidDate = #{record.paidDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.downloads != null">
+        Downloads = #{record.downloads,jdbcType=INTEGER},
+      </if>
+      <if test="record.printCount != null">
+        PrintCount = #{record.printCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null">
+        Remark = #{record.remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.isNew != null">
+        IsNew = #{record.isNew,jdbcType=BIT},
+      </if>
+      <if test="record.sumBalance != null">
+        SumBalance = #{record.sumBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.deductiblel != null">
+        Deductiblel = #{record.deductiblel,jdbcType=DECIMAL},
+      </if>
+      <if test="record.hxMoney != null">
+        HxMoney = #{record.hxMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.vendorId != null">
+        VendorId = #{record.vendorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.isDiKou != null">
+        IsDiKou = #{record.isDiKou,jdbcType=BIT},
+      </if>
+      <if test="record.rebateAmount != null">
+        RebateAmount = #{record.rebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.netAdvance != null">
+        NetAdvance = #{record.netAdvance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.redPayableAmount != null">
+        RedPayableAmount = #{record.redPayableAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.oldBillNo != null">
+        OldBillNo = #{record.oldBillNo,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update Tuhu_purchase.dbo.Purchase_ApplyPayment
+    set PKID = #{record.PKID,jdbcType=INTEGER},
+      BillNo = #{record.billNo,jdbcType=NVARCHAR},
+      PoiId = #{record.poiId,jdbcType=INTEGER},
+      ProductName = #{record.productName,jdbcType=NVARCHAR},
+      Payer = #{record.payer,jdbcType=NVARCHAR},
+      Payee = #{record.payee,jdbcType=NVARCHAR},
+      Account = #{record.account,jdbcType=NVARCHAR},
+      Bank = #{record.bank,jdbcType=NVARCHAR},
+      Amount = #{record.amount,jdbcType=DECIMAL},
+      FreightAmount = #{record.freightAmount,jdbcType=DECIMAL},
+      IsPlainInvoice = #{record.isPlainInvoice,jdbcType=BIT},
+      Is17TaxInvoice = #{record.is17TaxInvoice,jdbcType=BIT},
+      Is6TaxInvoice = #{record.is6TaxInvoice,jdbcType=BIT},
+      IsOtherInvoice = #{record.isOtherInvoice,jdbcType=BIT},
+      IsTakedInvoice = #{record.isTakedInvoice,jdbcType=BIT},
+      IsGoodsArrival = #{record.isGoodsArrival,jdbcType=BIT},
+      ChineseSumAmount = #{record.chineseSumAmount,jdbcType=NVARCHAR},
+      SumAmount = #{record.sumAmount,jdbcType=DECIMAL},
+      BatchNo = #{record.batchNo,jdbcType=INTEGER},
+      AuditStatus = #{record.auditStatus,jdbcType=INTEGER},
+      Creator = #{record.creator,jdbcType=NVARCHAR},
+      CreatedDate = #{record.createdDate,jdbcType=TIMESTAMP},
+      ModifyDate = #{record.modifyDate,jdbcType=TIMESTAMP},
+      Modifier = #{record.modifier,jdbcType=NVARCHAR},
+      Reason = #{record.reason,jdbcType=NVARCHAR},
+      VoucherUrl = #{record.voucherUrl,jdbcType=NVARCHAR},
+      PaidBy = #{record.paidBy,jdbcType=NVARCHAR},
+      PaidDate = #{record.paidDate,jdbcType=TIMESTAMP},
+      Downloads = #{record.downloads,jdbcType=INTEGER},
+      PrintCount = #{record.printCount,jdbcType=INTEGER},
+      Remark = #{record.remark,jdbcType=NVARCHAR},
+      IsNew = #{record.isNew,jdbcType=BIT},
+      SumBalance = #{record.sumBalance,jdbcType=DECIMAL},
+      Deductiblel = #{record.deductiblel,jdbcType=DECIMAL},
+      HxMoney = #{record.hxMoney,jdbcType=DECIMAL},
+      VendorId = #{record.vendorId,jdbcType=INTEGER},
+      IsDiKou = #{record.isDiKou,jdbcType=BIT},
+      RebateAmount = #{record.rebateAmount,jdbcType=DECIMAL},
+      NetAdvance = #{record.netAdvance,jdbcType=DECIMAL},
+      RedPayableAmount = #{record.redPayableAmount,jdbcType=DECIMAL},
+      OldBillNo = #{record.oldBillNo,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.util.mybatis.mapper.PurchaseApplyPayment">
+    update Tuhu_purchase.dbo.Purchase_ApplyPayment
+    <set>
+      <if test="billNo != null">
+        BillNo = #{billNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="poiId != null">
+        PoiId = #{poiId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null">
+        ProductName = #{productName,jdbcType=NVARCHAR},
+      </if>
+      <if test="payer != null">
+        Payer = #{payer,jdbcType=NVARCHAR},
+      </if>
+      <if test="payee != null">
+        Payee = #{payee,jdbcType=NVARCHAR},
+      </if>
+      <if test="account != null">
+        Account = #{account,jdbcType=NVARCHAR},
+      </if>
+      <if test="bank != null">
+        Bank = #{bank,jdbcType=NVARCHAR},
+      </if>
+      <if test="amount != null">
+        Amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="freightAmount != null">
+        FreightAmount = #{freightAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="isPlainInvoice != null">
+        IsPlainInvoice = #{isPlainInvoice,jdbcType=BIT},
+      </if>
+      <if test="is17TaxInvoice != null">
+        Is17TaxInvoice = #{is17TaxInvoice,jdbcType=BIT},
+      </if>
+      <if test="is6TaxInvoice != null">
+        Is6TaxInvoice = #{is6TaxInvoice,jdbcType=BIT},
+      </if>
+      <if test="isOtherInvoice != null">
+        IsOtherInvoice = #{isOtherInvoice,jdbcType=BIT},
+      </if>
+      <if test="isTakedInvoice != null">
+        IsTakedInvoice = #{isTakedInvoice,jdbcType=BIT},
+      </if>
+      <if test="isGoodsArrival != null">
+        IsGoodsArrival = #{isGoodsArrival,jdbcType=BIT},
+      </if>
+      <if test="chineseSumAmount != null">
+        ChineseSumAmount = #{chineseSumAmount,jdbcType=NVARCHAR},
+      </if>
+      <if test="sumAmount != null">
+        SumAmount = #{sumAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="batchNo != null">
+        BatchNo = #{batchNo,jdbcType=INTEGER},
+      </if>
+      <if test="auditStatus != null">
+        AuditStatus = #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null">
+        Creator = #{creator,jdbcType=NVARCHAR},
+      </if>
+      <if test="createdDate != null">
+        CreatedDate = #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        ModifyDate = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null">
+        Modifier = #{modifier,jdbcType=NVARCHAR},
+      </if>
+      <if test="reason != null">
+        Reason = #{reason,jdbcType=NVARCHAR},
+      </if>
+      <if test="voucherUrl != null">
+        VoucherUrl = #{voucherUrl,jdbcType=NVARCHAR},
+      </if>
+      <if test="paidBy != null">
+        PaidBy = #{paidBy,jdbcType=NVARCHAR},
+      </if>
+      <if test="paidDate != null">
+        PaidDate = #{paidDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downloads != null">
+        Downloads = #{downloads,jdbcType=INTEGER},
+      </if>
+      <if test="printCount != null">
+        PrintCount = #{printCount,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        Remark = #{remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="isNew != null">
+        IsNew = #{isNew,jdbcType=BIT},
+      </if>
+      <if test="sumBalance != null">
+        SumBalance = #{sumBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="deductiblel != null">
+        Deductiblel = #{deductiblel,jdbcType=DECIMAL},
+      </if>
+      <if test="hxMoney != null">
+        HxMoney = #{hxMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="vendorId != null">
+        VendorId = #{vendorId,jdbcType=INTEGER},
+      </if>
+      <if test="isDiKou != null">
+        IsDiKou = #{isDiKou,jdbcType=BIT},
+      </if>
+      <if test="rebateAmount != null">
+        RebateAmount = #{rebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="netAdvance != null">
+        NetAdvance = #{netAdvance,jdbcType=DECIMAL},
+      </if>
+      <if test="redPayableAmount != null">
+        RedPayableAmount = #{redPayableAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="oldBillNo != null">
+        OldBillNo = #{oldBillNo,jdbcType=INTEGER},
+      </if>
+    </set>
+    where PKID = #{PKID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.util.mybatis.mapper.PurchaseApplyPayment">
+    update Tuhu_purchase.dbo.Purchase_ApplyPayment
+    set BillNo = #{billNo,jdbcType=NVARCHAR},
+      PoiId = #{poiId,jdbcType=INTEGER},
+      ProductName = #{productName,jdbcType=NVARCHAR},
+      Payer = #{payer,jdbcType=NVARCHAR},
+      Payee = #{payee,jdbcType=NVARCHAR},
+      Account = #{account,jdbcType=NVARCHAR},
+      Bank = #{bank,jdbcType=NVARCHAR},
+      Amount = #{amount,jdbcType=DECIMAL},
+      FreightAmount = #{freightAmount,jdbcType=DECIMAL},
+      IsPlainInvoice = #{isPlainInvoice,jdbcType=BIT},
+      Is17TaxInvoice = #{is17TaxInvoice,jdbcType=BIT},
+      Is6TaxInvoice = #{is6TaxInvoice,jdbcType=BIT},
+      IsOtherInvoice = #{isOtherInvoice,jdbcType=BIT},
+      IsTakedInvoice = #{isTakedInvoice,jdbcType=BIT},
+      IsGoodsArrival = #{isGoodsArrival,jdbcType=BIT},
+      ChineseSumAmount = #{chineseSumAmount,jdbcType=NVARCHAR},
+      SumAmount = #{sumAmount,jdbcType=DECIMAL},
+      BatchNo = #{batchNo,jdbcType=INTEGER},
+      AuditStatus = #{auditStatus,jdbcType=INTEGER},
+      Creator = #{creator,jdbcType=NVARCHAR},
+      CreatedDate = #{createdDate,jdbcType=TIMESTAMP},
+      ModifyDate = #{modifyDate,jdbcType=TIMESTAMP},
+      Modifier = #{modifier,jdbcType=NVARCHAR},
+      Reason = #{reason,jdbcType=NVARCHAR},
+      VoucherUrl = #{voucherUrl,jdbcType=NVARCHAR},
+      PaidBy = #{paidBy,jdbcType=NVARCHAR},
+      PaidDate = #{paidDate,jdbcType=TIMESTAMP},
+      Downloads = #{downloads,jdbcType=INTEGER},
+      PrintCount = #{printCount,jdbcType=INTEGER},
+      Remark = #{remark,jdbcType=NVARCHAR},
+      IsNew = #{isNew,jdbcType=BIT},
+      SumBalance = #{sumBalance,jdbcType=DECIMAL},
+      Deductiblel = #{deductiblel,jdbcType=DECIMAL},
+      HxMoney = #{hxMoney,jdbcType=DECIMAL},
+      VendorId = #{vendorId,jdbcType=INTEGER},
+      IsDiKou = #{isDiKou,jdbcType=BIT},
+      RebateAmount = #{rebateAmount,jdbcType=DECIMAL},
+      NetAdvance = #{netAdvance,jdbcType=DECIMAL},
+      RedPayableAmount = #{redPayableAmount,jdbcType=DECIMAL},
+      OldBillNo = #{oldBillNo,jdbcType=INTEGER}
+    where PKID = #{PKID,jdbcType=INTEGER}
+  </update>
+</mapper>
