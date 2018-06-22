@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class AopFace {
 	
-	@Pointcut("execution (* com.example.demo.service.TestInterface.test(..))")
+	@Pointcut("execution (* com.example.demo.service.TestInterface.test1(..))")
     private void anyMethod() {} // 声明一个切入点，anyMethod为切入点名称
 
     // 声明该方法是一个前置通知：在目标方法开始之前执行 
